@@ -1,0 +1,224 @@
+MKCONFIGURE(1)          FreeBSD General Commands Manual         MKCONFIGURE(1)
+
+[1mNAME[0m
+     [1mmkconfigure [22m-- Compile BSDBuild configure scripts
+
+[1mSYNOPSIS[0m
+     [1mmkconfigure[0m
+
+[1mDESCRIPTION[0m
+     The [1mmkconfigure [22mprogram reads a [4mconfigure.in[24m source from the standard
+     input and outputs a valid Bourne configure script to the standard output.
+
+     The [4mconfigure.in[24m source can contain a number of special directives, along
+     with Bourne shell code fragments that will be copied verbatim to the con-
+     figure script.  Long lines in the input script can be broken with end-of-
+     line backslash (\) characters.
+
+[1mMKCONFIGURE DIRECTIVES[0m
+     [1mmkconfigure [22mdirectives are case-insensitive.  The following directives
+     are recognized:
+
+     PACKAGE(name)                         Short name for the software pack-
+                                           age.
+
+     VERSION(string)                       Specify software version.
+
+     RELEASE(string)                       Specify release name.
+
+     CHECK(package[,version[,prefix]])     Invoke one of the standard BSDBuild
+                                           tests (see the BSDBuild website for
+                                           a list).  Most tests will set the
+                                           HAVE_FOO (where FOO is the package
+                                           name in upper-case) variable to
+                                           indicate the results of the test.
+                                           C/C++ libraries also typically set
+                                           FOO_CFLAGS and FOO_LIBS.
+
+                                           If the optional [4mversion[24m argument is
+                                           specified, the version number is
+                                           verified as well and MK_VERSION_OK
+                                           is defined to `yes' if the versions
+                                           are compatible.  A version argument
+                                           of 0 indicates that no version
+                                           checking should be done.
+
+                                           If the optional [4mprefix[24m argument is
+                                           defined, the test will look for the
+                                           package only under the specified
+                                           prefix, and the test will fail if
+                                           it cannot be found under it.  This
+                                           is typically set to
+                                           `${prefix_foo},' which returns the
+                                           value in `--enable-foo=VALUE' or
+                                           `--with-foo=VALUE' options.
+
+     REQUIRE(package[,version[,prefix]])   Same as the CHECK directive, except
+                                           that the configure script will fail
+                                           if the package is either not found,
+                                           or if the version is too old.
+
+     TEST_DIR(path)                        Specify an extra directory in which
+                                           to search for BSDBuild test modules
+                                           (.pm files).
+
+     REGISTER(name,descr)                  Describe a configure script argu-
+                                           ment (for --help).  The [4mname[24m argu-
+                                           ment is usually of the form
+                                           [4m--with-foo[24m or [4m--enable-foo[24m), and
+                                           [4mdescr[24m is a description of the
+                                           option (it is also customary to
+                                           mention the default value of this
+                                           option in the description).
+
+     REGISTER_SECTION(string)              Describe a section of configure
+                                           script arguments (for --help).
+
+     HDEFINE(opt,val)                      Define a C preprocessor style
+                                           header option.  [4mopt[24m is an unquoted,
+                                           usually upper-case string and [4mval[0m
+                                           is a string enclosed in double
+                                           quotes.  For example, if [4mopt[24m is
+                                           `ENABLE_FOO', a file
+                                           [4mconfig/enable_foo.h[24m will be gener-
+                                           ated by configure.
+
+     HDEFINE_UNQUOTED(opt,val)             Same as HDEFINE(), except that the
+                                           value is left unquoted.
+
+     HUNDEF(opt)                           Similar to HDEFINE, except that
+                                           [4mconfig/<option>.h[24m will contain an
+                                           #undef directive.
+
+     MDEFINE(opt,val)                      Define a make(1) variable, which
+                                           will be visible in the project's
+                                           makefiles.  [4mopt[24m is again an
+                                           unquoted, usually upper-case string
+                                           and [4mval[24m is a value enclosed in dou-
+                                           ble quotes.
+
+     MAPPEND(opt,val)                      Same effect as MDEFINE(), except
+                                           that the value is appended to the
+                                           variable (following a space).
+
+     C_DEFINE(opt)                         (C-style compilers only) Specify a
+                                           global define that will be passed
+                                           to the compiler.  This results in
+                                           the [4m-DFOO[24m flag being used in com-
+                                           piler command lines, but it is also
+                                           interpreted by build.proj.mk(5).
+
+     C_INCDIR(dir)                         (C-style compilers only) Specify a
+                                           directory for include files.  This
+                                           results in the [4m-Idir[24m flag being
+                                           added to the compiler command line,
+                                           but it is also interpreted by
+                                           build.proj.mk(5).
+
+     C_INCDIR_CONFIG(dir)                  (C-style compilers only) Specify a
+                                           target directory for individual
+                                           include files with configure-script
+                                           generated statements (i.e.,
+                                           HAVE_FOO is written to [4mhave_foo.h[0m
+                                           in the specified directory).  Pass
+                                           an empty argument to disable.  By
+                                           default, [4m./config[24m is used.  This
+                                           directive should be only called
+                                           once, and may be placed anywhere in
+                                           configure.in.
+
+     C_INCLUDE_CONFIG(file)                (C-style compilers only) Specify a
+                                           monolithic C include file which
+                                           will contain configure-script gen-
+                                           erated statements (i.e., HAVE_FOO
+                                           defines).  Pass an empty argument
+                                           to disable (default).  This direc-
+                                           tive should be only called once,
+                                           and may be placed anywhere in con-
+                                           figure.in.
+
+     C_INCPREP(dir)                        (C-style compilers only) Specify
+                                           absolute path to directory which
+                                           will contain include files.  The
+                                           configure script provides the user
+                                           with the option of either generat-
+                                           ing preprocessed header files into
+                                           this directory (--includes=yes, the
+                                           default), or create a set of sym-
+                                           bolic links to the original include
+                                           files in the source directory
+                                           (--includes=link).
+
+     C_OPTION                              Provide a gcc-style compiler
+                                           option, such as [4m-Wall[24m, [4m-Werror[24m or
+                                           [4m-Wmissing-prototypes[24m.  For environ-
+                                           ments using other compilers, BSD-
+                                           Build will attempt to set equiva-
+                                           lent options.
+
+     LD_OPTION                             Provide a ld-style linker option,
+                                           such as [4m-g[24m or [4m-nostdlib[24m.
+
+     C_EXTRA_WARNINGS                      Request extra compiler warnings.
+                                           The exact meaning is compiler spe-
+                                           cific.
+
+     C_FATAL_WARNINGS                      Request that compilation fail if
+                                           warnings are encountered.
+
+     CONFIG_SCRIPT(name[,args])            Generate a standard "foo-config"
+                                           script.  [4mname[24m specifies the name of
+                                           the script.  For C/C++ style pack-
+                                           ages, the arguments are usually the
+                                           `--cflags' output, followed by the
+                                           `--libs' output.
+
+     CONFIG_GUESS(path)                    Specify an alternate path to
+                                           [4mconfig.guess[24m (default is
+                                           [4mmk/config.guess[24m).
+
+     CHECK_HEADER(header[, ...])           Check whether one or more header
+                                           files are available under the cur-
+                                           rent C/C++ compiler settings.  If a
+                                           header file such as [4msys/foo.h[24m is
+                                           found, HAVE_SYS_FOO_H is defined.
+
+     CHECK_HEADER_OPTS(cflags, libs, header[, ...])
+                                           Same as CHECK_HEADER(), except that
+                                           the headers are tested using the
+                                           provided CFLAGS and LIBS.
+
+     CHECK_FUNC(foofunction[, ...])        Check for the existence of one or
+                                           more functions.  If a function
+                                           [1mfoofunction[22m() is found,
+                                           HAVE_FUNCTION_NAME is defined.
+
+     CHECK_FUNC_OPTS(cflags, libs, foofunction[, ...])
+                                           Same as CHECK_FUNCTION(), except
+                                           that the function is tested using
+                                           the provided CFLAGS and LIBS.
+
+     CHECK_PERL_MODULE(modulename)         Check that the specified Perl mod-
+                                           ule is installed and functioning.
+                                           For example, if [4mmodulename[24m is
+                                           "Time::Zone", the macro will set
+                                           the variable "HAVE_TIME_ZONE"
+                                           accordingly.
+
+     REQUIRE_PERL_MODULE(modulename)       Same as CHECK_PERL_MODULE, except
+                                           that the configure script will
+                                           abort if the module is not found.
+
+     DEFAULT_DIR(dirname, path)            Override one of the standard
+                                           installation path defaults.  The
+                                           [4mdirname[24m argument may be one of:
+                                           PREFIX, BINDIR, LIBDIR, LIBEXECDIR,
+                                           DATADIR, STATEDIR, SYSCONFDIR,
+                                           LOCALEDIR or MANDIR.
+
+[1mSEE ALSO[0m
+     build.prog.mk(5), build.lib.mk(5), build.common.mk(5)
+
+     http://hypertriton.com/bsdbuild/
+
+FreeBSD 11.0                     JULY 19, 2007                    FreeBSD 11.0

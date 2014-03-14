@@ -1,0 +1,120 @@
+BUILD.PROG.MK(5)          FreeBSD File Formats Manual         BUILD.PROG.MK(5)
+
+[1mNAME[0m
+     [1mbuild.prog.mk [22m-- bsdbuild - compilation of executables
+
+[1mSYNOPSIS[0m
+     [1m.include <bsd.prog.mk>[0m
+
+[1mDESCRIPTION[0m
+     The [1mbuild.prog.mk [22mmodule is used to compile an executable program from a
+     set of source files.  Currently, supported languages include:
+     [1m+o   [22mC (*.c)
+     [1m+o   [22mC++ (*.cc)
+     [1m+o   [22mObjective C (*.m)
+     [1m+o   [22mAssembler (*.asm)
+     [1m+o   [22mLex (*.l)
+     [1m+o   [22mYacc (*.y)
+
+[1mTARGETS[0m
+     [4m${PROG}[24m          Compile/link the ${PROG} executable from the specified
+                      source files.
+
+     [4m${GMONOUT}[24m       Compile/link a profiled version of ${PROG}.
+
+     [4mclean-prog[24m       Clean up object and executable files.
+
+     [4mcleandir-prog[24m    Clean up for packaging.
+
+     [4minstall-prog[24m     Install program to the target installation directory
+                      (see csoft.common.mk(5)).
+
+     [4mdeinstall-prog[24m   Uninstall program from the installation directory.
+
+[1mVARIABLES[0m
+     PROG             Filename of target executable.  Platform-specific trans-
+                      forms may be applied to the name.
+
+     PROG_TYPE        Type of application (used on some platforms by
+                      build.proj.mk(5)).  Set to `CLI' for a command-line
+                      utility, `GUI' for a graphical interface and `DAEMON'
+                      for a server program.  Defaults to `CLI'.
+
+     BINDIR           Target installation directory for executables (usually
+                      set by configure).
+
+     PROG_INSTALL     If set to `Yes', the [4minstall[24m target will install the
+                      program, otherwise it will be a no-op.  Defaults to
+                      `Yes'.
+
+     PROG_GUID        A Global Unique Identifier (GUID) for the program.
+                      Exact interpretation is platform-specific.
+
+     GMONOUT          Output filename for profiled version of the program.
+
+     CC               Compiler for C, C++ and Objective C sources.  Defaults
+                      to `cc'.
+
+     CFLAGS           Compiler flags for C sources.  Defaults to `-O2 -g'.
+
+     CXXFLAGS         Compiler flags for C++ sources.  Defaults to `'.
+
+     OBJCFLAGS        Compiler flags for Objective C sources.  Defaults to
+                      `${CFLAGS}'.
+
+     CPPFLAGS         Compiler preprocessor flags, for sources in all lan-
+                      guages featuring a C preprocessor.
+
+     ASM              Compiler for assembler sources.  Defaults to `nasm'.
+
+     ASMFLAGS         Compiler flags for assembler.  Defaults to `-g
+                      -w-orphan-labels'.
+
+     LEX              Path to the lex(1) lexical analyzer generator.
+
+     YACC             Path to the yacc(1) parser generator.
+
+     LFLAGS           Options for lex(1), defaults to `'.
+
+     YFLAGS           Options for yacc(1), defaults to `-d'.
+
+     LIBL             Libraries to use for Lex lexers.  Defaults to `-ll'.
+
+     WINDRES          (Specific to the win32 platform) Path to the windres(1)
+                      utility, which generates windows resource files.
+
+     WINRES           (Specific to the win32 platform) Resource file to use
+                      with windres(1).
+
+     DATAFILES        List of data files to install into ${DATADIR}.  The
+                      files must have been generated from the build process
+                      (i.e., if using a separate build with --srcdir, the
+                      specified files must exist in the build directory).
+
+     DATAFILES_SRC    Files to install into ${DATADIR}.  This variable is han-
+                      dled similarly to DATAFILES, except that the specified
+                      files must exist in the source directory.
+
+     CONFDIR          System-wide configuration files will be installed into
+                      this directory.  It is usually set relative to
+                      `${SYSCONFDIR}', for example
+                      `${SYSCONFDIR}/MyApplication'.
+
+     CONF             List of configuration files to install into ${CONFDIR}.
+                      Note that the [4minstall[24m target will not override existing
+                      configuration files, instead it will output a ``The
+                      following configuration files have been preserved'' mes-
+                      sage.
+
+     CONF_OVERWRITE   Overwrite any existing configuration file on installa-
+                      tion.  Default is "No".
+
+[1mSEE ALSO[0m
+     build.common.mk(5), build.lib.mk(5)
+
+[1mHISTORY[0m
+     [1mbuild.prog.mk [22mfirst appeared in BSDBuild 1.0.
+
+     BSDBuild is based on the 4.4BSD build system.
+
+FreeBSD 11.0                     July 18, 2007                    FreeBSD 11.0

@@ -1,0 +1,36 @@
+BUILD.DEP.MK(5)           FreeBSD File Formats Manual          BUILD.DEP.MK(5)
+
+[1mNAME[0m
+     [1mbuild.dep.mk [22m-- bsdbuild - dependency generation
+
+[1mSYNOPSIS[0m
+     [1m.include <bsd.dep.mk>[0m
+
+[1mDESCRIPTION[0m
+     The [1mbuild.dep.mk [22mmodule is used by build.prog.mk(5) and build.lib.mk(5),
+     but is never included directly into makefiles.  Its role is to generate
+     [4m.depend[24m files, which are used in the build process to determine if object
+     files need to be rebuilt.
+
+[1mTARGETS[0m
+     [4mdepend[24m   Generate a [4m.depend[24m file by invoking the compiler with the [4m-M[0m
+              flag.
+
+     [4mclean-depend[0m
+              Clean up the [4m.depend[24m file.
+
+[1mVARIABLES[0m
+     MKDEP   Path to mkdep(1) utility.  Defaults to `${TOP}/mk/mkdep', which
+             is bundled with BSDBuild.
+
+     CC      Compiler command to invoke (must support the [4m-M[24m option).
+
+[1mSEE ALSO[0m
+     build.common.mk(5), build.prog.mk(5), build.lib.mk(5)
+
+[1mHISTORY[0m
+     [1mbuild.dep.mk [22mfirst appeared in BSDBuild 1.0.
+
+     BSDBuild is based on the 4.4BSD build system.
+
+FreeBSD 11.0                     July 18, 2007                    FreeBSD 11.0
