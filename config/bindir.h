@@ -1,3 +1,3 @@
 #ifndef BINDIR
-#define BINDIR "/usr/bin"
+#define BINDIR "/usr/local/bin"
 #endif

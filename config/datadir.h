@@ -1,3 +1,3 @@
 #ifndef DATADIR
-#define DATADIR "/usr/share/bsdbuild"
+#define DATADIR "/usr/local/share/bsdbuild"
 #endif

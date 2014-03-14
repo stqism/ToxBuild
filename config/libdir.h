@@ -1,3 +1,3 @@
 #ifndef LIBDIR
-#define LIBDIR "/usr/lib"
+#define LIBDIR "/usr/local/lib"
 #endif

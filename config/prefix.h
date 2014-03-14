@@ -1,3 +1,3 @@
 #ifndef PREFIX
-#define PREFIX "/usr"
+#define PREFIX "/usr/local"
 #endif

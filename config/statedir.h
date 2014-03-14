@@ -1,3 +1,3 @@
 #ifndef STATEDIR
-#define STATEDIR "/usr/var"
+#define STATEDIR "/usr/local/var"
 #endif

@@ -1,3 +1,3 @@
 #ifndef LOCALEDIR
-#define LOCALEDIR "/usr/share/locale"
+#define LOCALEDIR "/locale"
 #endif

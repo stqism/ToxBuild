@@ -1,3 +1,3 @@
 #ifndef LIBEXECDIR
-#define LIBEXECDIR "/usr/libexec"
+#define LIBEXECDIR "/usr/local/libexec"
 #endif

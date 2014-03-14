@@ -1,0 +1,731 @@
+#!/bin/sh
+#
+# Do not edit!
+# This file was generated from configure.in by BSDBuild 3.0.
+#
+# To regenerate this file, get the latest BSDBuild release from
+# http://hypertriton.com/bsdbuild/, and use the command:
+#
+#     $ cat configure.in | mkconfigure > configure
+#
+# Copyright (c) 2001-2012 Hypertriton, Inc. <http://hypertriton.com/>
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+# USE OF THIS SOFTWARE EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+PACKAGE="Untitled"
+VERSION=""
+RELEASE=""
+
+optarg=
+for arg
+do
+	case "$arg" in
+	-*=*)
+	    optarg=`echo "$arg" | sed 's/[-_a-zA-Z0-9]*=//'`
+	    ;;
+	*)
+	    optarg=
+	    ;;
+	esac
+
+	case "$arg" in
+	--build=*)
+	    build_arg=$optarg
+	    ;;
+	--host=*)
+	    host_arg=$optarg
+	    ;;
+	--target=*)
+	    target=$optarg
+	    ;;
+	--emul-os=*)
+	    PROJ_TARGET=$optarg
+	    ;;
+	--byte-order=*)
+	    byte_order=$optarg
+	    ;;
+	--prefix=*)
+	    prefix=$optarg
+	    ;;
+	--exec-prefix=*)
+	    exec_prefix=$optarg
+	    ;;
+	--sysconfdir=*)
+	    sysconfdir=$optarg
+	    ;;
+	--bindir=*)
+	    bindir=$optarg
+	    ;;
+	--libdir=*)
+	    libdir=$optarg
+	    ;;
+	--moduledir=*)
+	    moduledir=$optarg
+	    ;;
+	--libexecdir=*)
+	    libexecdir=$optarg
+	    ;;
+	--datadir=*)
+	    datadir=$optarg
+	    ;;
+	--statedir=* | --localstatedir=*)
+	    statedir=$optarg
+	    ;;
+	--localedir=*)
+	    localedir=$optarg
+	    ;;
+	--mandir=*)
+	    mandir=$optarg
+	    ;;
+	--infodir=* | --datarootdir=* | --docdir=* | --htmldir=* | --dvidir=* | --pdfdir=* | --psdir=* | --sharedstatedir=* | --sbindir=*)
+	    ;;
+	--enable-*)
+	    option=`echo $arg | sed -e 's/--enable-//' -e 's/=.*//'`
+	    option=`echo $option | sed 's/-/_/g'`
+	    case "$arg" in
+	        *=*)
+	            eval "enable_${option}='$optarg'"
+	            eval "prefix_${option}='$optarg'"
+		    ;;
+		*)
+	            eval "enable_${option}=yes"
+		    ;;
+	    esac
+	    ;;
+	--disable-*)
+	    option=`echo $arg | sed -e 's/--disable-//'`;
+	    option=`echo $option | sed 's/-/_/g'`
+	    eval "enable_${option}=no"
+	    ;;
+	--with-*)
+	    option=`echo $arg | sed -e 's/--with-//' -e 's/=.*//'`
+	    option=`echo $option | sed 's/-/_/g'`
+	    case "$arg" in
+	        *=*)
+	            eval "with_${option}='$optarg'"
+	            eval "prefix_${option}='$optarg'"
+		    ;;
+		*)
+	            eval "with_${option}=yes"
+		    ;;
+	    esac
+	    ;;
+	--without-*)
+	    option=`echo $arg | sed -e 's/--without-//'`;
+	    option=`echo $option | sed 's/-/_/g'`
+	    eval "with_${option}=no"
+	    ;;
+	--help)
+	    show_help=yes
+	    ;;
+	--version)
+	    show_version=yes
+	    ;;
+	--srcdir=*)
+	    srcdir=$optarg
+	    ;;
+	--testdir=*)
+	    testdir=$optarg
+	    ;;
+	--cache=*)
+	    cache=$optarg
+	    ;;
+	--includes=*)
+	    includes=$optarg
+	    ;;
+	--cache-file=*)
+	    ;;
+	--config-cache | -C)
+	    ;;
+	*)
+	    echo "invalid argument: $arg"
+	    echo "try ./configure --help"
+	    exit 1
+	    ;;
+	esac
+done
+if [ -e "/bin/echo" ]; then
+    /bin/echo -n ""
+    if [ $? = 0 ]; then
+    	ECHO_N="/bin/echo -n"
+    else
+    	ECHO_N="echo -n"
+    fi
+else
+    ECHO_N="echo -n"
+fi
+PERL=""
+for path in `echo $PATH | sed 's/:/ /g'`; do
+	if [ -x "${path}" ]; then
+		if [ -e "${path}/perl" ]; then
+			PERL="${path}/perl"
+			break
+		fi
+	fi
+done
+PKGCONFIG=""
+for path in `echo $PATH | sed 's/:/ /g'`; do
+	if [ -x "${path}" ]; then
+		if [ -e "${path}/pkg-config" ]; then
+			PKGCONFIG="${path}/pkg-config"
+			break
+		fi
+	fi
+done
+if [ "${prefix}" != "" ]; then
+    PREFIX="$prefix"
+else
+    PREFIX="/usr/local"
+fi
+if [ "${exec_prefix}" != "" ]; then
+    EXEC_PREFIX="$exec_prefix"
+else
+    EXEC_PREFIX="${PREFIX}"
+fi
+if [ "${srcdir}" != "" ]; then
+	if [ "${PERL}" = "" ]; then
+		echo "*"
+		echo "* Separate build (--srcdir) requires perl, but there is"
+		echo "* no perl interpreter to be found in your PATH."
+		echo "*"
+		exit 1
+	fi
+	SRC=${srcdir}
+else
+	SRC=`pwd`
+fi
+BLD=`pwd`
+SRCDIR="${SRC}"
+BLDDIR="${BLD}"
+
+if [ "${testdir}" != "" ]; then
+	echo "Configure tests will be executed in ${testdir}"
+	if [ ! -e "${testdir}" ]; then
+		echo "Creating ${testdir}"
+		mkdir ${testdir}
+	fi
+else
+	testdir="."
+fi
+if [ "${includes}" = "" ]; then
+	includes="yes"
+fi
+case "${includes}" in
+yes|no)
+	;;
+link)
+	if [ "${with_proj_generation}" ]; then
+		echo "Cannot use --includes=link with --with-proj-generation!"
+		exit 1
+	fi
+	;;
+*)
+	echo "Usage: --includes [yes|no|link]"
+	exit 1
+	;;
+esac
+if [ "${srcdir}" = "" ]; then
+	cat << EOT > configure.dep.pl
+#!/usr/bin/perl
+# Public domain.
+# Scan Makefiles for "include .depend" and generate empty ".depend" files,
+# such that make can be run prior to an initial "make depend".
+#
+
+my %V = ();
+
+sub MakefileIncludesDepend (\$\$)
+{
+	my \$path = shift;
+	my \$cwd = shift;
+
+	if (!open(MF, \$path)) {
+		return (0);
+	}
+	my @lines = ();
+	foreach \$_ (<MF>) {
+		chop;
+
+		if (/^(.+)\\\\\$/) {			# Expansion
+			\$line .= \$1;
+		} else {				# New line
+			if (\$line) {
+				push @lines, \$line . \$_;
+				\$line = '';
+			} else {
+				push @lines, \$_;
+			}
+		}
+	}
+	foreach \$_ (@lines) {
+		if (/^\\s*#/) { next; }
+		if (/^\\t/) { next; }
+		s/\\\$\\{(\\w+)\\}/\$V{\$1}/g;
+		if (/^\\s*(\\w+)\\s*=\\s*"(.+)"\$/ ||
+		    /^\\s*(\\w+)\\s*=\\s*(.+)\$/) {
+			\$V{\$1} = \$2;
+		} elsif (/^\\s*(\\w+)\\s*\\+=\\s*"(.+)"\$/ ||
+		         /^\\s*(\\w+)\\s*\\+=\\s*(.+)\$/) {
+			if (exists(\$V{\$1}) && \$V{\$1} ne '') {
+				\$V{\$1} .= ' '.\$2;
+			} else {
+				\$V{\$1} = \$2;
+			}
+		}
+		if (/^\\s*include\\s+(.+)\$/) {
+			if (\$1 eq '.depend' ||
+			    MakefileIncludesDepend(\$cwd.'/'.\$1, \$cwd)) {
+				return (1);
+			}
+		}
+	}
+	close(MF);
+	return (0);
+}
+
+sub Scan (\$)
+{
+	my \$dir = shift;
+
+	unless (opendir(CWD, \$dir)) {
+		print STDERR "\$dir: opendir: \$!; ignoring\\n";
+		return;
+	}
+	%V = ();
+	if (-e \$dir.'/Makefile' &&
+	    MakefileIncludesDepend("\$dir/Makefile", \$dir)) {
+		if (open(OUT, ">\$dir/.depend")) {
+			close(OUT);
+		} else {
+			print STDERR "\$dir/.depend: \$!; ignoring\\n";
+		}
+	}
+	foreach my \$ent (readdir(CWD)) {
+		my \$file = \$dir.'/'.\$ent;
+
+		if (\$ent =~ /^\\./) {
+			next;
+		}
+		if (-d \$file) {
+			Scan(\$file);
+			next;
+		}
+	}
+	closedir(CWD);
+}
+if (@ARGV < 1) {
+	print STDERR "Usage: gen-dotdepend.pl [directory]\\n";
+	exit(1);
+}
+Scan(\$ARGV[0]);
+EOT
+	if [ "${PERL}" != "" ]; then
+		${PERL} configure.dep.pl .
+		rm -f configure.dep.pl
+	else
+		echo "*"
+		echo "* Warning: No perl was found. Perl is required for automatic"
+		echo "* generation of .depend files. You may need to create empty"
+		echo "* .depend files where it is required."
+		echo "*"
+	fi
+fi
+if [ "${show_help}" = "yes" ]; then
+echo "This configure script was generated by BSDBuild 3.0."
+echo "<http://bsdbuild.hypertriton.com/>"
+echo ""
+echo "Usage: ./configure [options]"
+echo ""
+echo "Standard build options:"
+echo "    --bindir=DIR              Executables for common users [PREFIX/bin]"
+echo "    --build=STRING            Host environment for build [auto-detect]"
+echo "    --byte-order=STRING       Byte order for build (LE|BE) [auto-detect]"
+echo "    --cache=DIR               Cache ./configure results in directory [none]"
+echo "    --datadir=DIR|NONE        Data files for program use [PREFIX/share]"
+echo "    --enable-nls              Multi-language support [no]"
+echo "    --exec-prefix=DIR         Machine-dependent installation base [PREFIX]"
+echo "    --host=STRING             Cross-compile for target environment [BUILD]"
+echo "    --includes=STRING         Preprocess C headers (yes|no|link) [yes]"
+echo "    --libdir=DIR              System libraries [PREFIX/lib]"
+echo "    --libexecdir=DIR          Executables for program use [PREFIX/libexec]"
+echo "    --localedir=DIR           Multi-language support locales [DATADIR/locale]"
+echo "    --mandir=DIR              Manual page documentation [PREFIX/man]"
+echo "    --moduledir=DIR|NONE      Dynamically loaded modules [PREFIX/lib]"
+echo "    --prefix=DIR              Installation base [/usr/local]"
+echo "    --srcdir=DIR              Source directory for concurrent build [.]"
+echo "    --statedir=DIR|NONE       Modifiable single-machine data [PREFIX/var]"
+echo "    --sysconfdir=DIR|NONE     System configuration files [PREFIX/etc]"
+echo "    --testdir=DIR             Execute all tests in this directory [.]"
+echo "    --with-catman             Install cat files for manual pages [auto-detect]"
+echo "    --with-ctags              Generate ctags(1) tag files [no]"
+echo "    --with-docs               Generate printable documentation [no]"
+echo "    --with-gettext            Use gettext for multi-language [auto-detect]"
+echo "    --with-libtool            Specify path to libtool [auto-detect]"
+echo "    --with-manlinks           Add manual entries for every function [no]"
+echo "    --with-manpages           Generate Unix manual pages [yes]"
+
+exit 1
+fi;
+if [ "${show_version}" = "yes" ]; then
+echo "BSDBuild 3.0"
+exit 0
+fi;
+if [ "${srcdir}" != "" ]; then
+	build_guessed=`sh ${srcdir}/mk/config.guess`
+else
+	build_guessed=`sh mk/config.guess`
+fi
+if [ $? != 0 ]; then
+	echo "mk/config.guess failed"
+	exit 1
+fi
+if [ "${build_arg}" != "" ]; then
+	build="${build_arg}"
+else
+	build="${build_guessed}"
+fi
+if [ "${host_arg}" != "" ]; then
+	host="${host_arg}"
+else
+	host="${build}"
+fi
+if [ "${host}" != "${build_guessed}" ]; then
+	CROSS_COMPILING="yes"
+else
+	CROSS_COMPILING="no"
+fi
+echo "BSDBuild 3.0 (host: $host)"
+
+if [ -e "Makefile.config" ]; then
+	echo "* Overwriting existing Makefile.config"
+fi
+echo "# Generated by configure script (BSDBuild 3.0)." > Makefile.config
+echo "" >> Makefile.config
+echo "BUILD=${build}" >> Makefile.config
+echo "HOST=${host}" >> Makefile.config
+echo "CROSS_COMPILING=${CROSS_COMPILING}" >> Makefile.config
+echo "SRCDIR=${SRC}" >> Makefile.config
+echo "BLDDIR=${BLD}" >> Makefile.config
+
+echo "Generated by configure script" > config.log
+echo "BSDBuild Version: 3.0" >> config.log
+echo "Host: $host" >> config.log
+
+for arg
+do
+	echo "Argument: $arg" >> config.log
+done
+if [ -e "config" ]; then
+	echo "* Overwriting config directory"
+	rm -fR "config"
+fi
+mkdir -p "config"
+if [ $? != 0 ]; then
+	echo "Could not create config directory."
+	exit 1
+fi
+HAVE_MANDOC="no"
+NROFF=""
+for path in `echo $PATH | sed 's/:/ /g'`; do
+	if [ -x "${path}/nroff" ]; then
+		NROFF="${path}/nroff"
+	fi
+done
+if [ "${NROFF}" != "" ]; then
+	echo | ${NROFF} -Tmandoc >/dev/null
+	if [ "$?" = "0" ]; then
+		HAVE_MANDOC="yes"
+	fi
+fi
+if [ "${HAVE_MANDOC}" = "no" ]; then
+	if [ "${with_manpages}" = "yes" ]; then
+		echo "*"
+		echo "* --with-manpages was requested, but either the nroff(1)"
+		echo "* utility or the mdoc(7) macro package was not found."
+		echo "*"
+		exit 1
+	fi
+	echo "HAVE_MANDOC=no" >> Makefile.config
+	echo "NOMAN=yes" >> Makefile.config
+	echo "NOMANLINKS=yes" >> Makefile.config
+else
+	echo "HAVE_MANDOC=yes" >> Makefile.config
+	if [ "${with_catman}" = "no" ]; then
+		echo "NOCATMAN=yes" >> Makefile.config
+	else
+		if [ "${with_catman}" = "yes" ]; then
+			echo "NOCATMAN=no" >> Makefile.config
+		else
+			case "${host}" in
+			*-*-freebsd*)
+				echo "NOCATMAN=yes" >> Makefile.config
+				;;
+			*)
+				echo "NOCATMAN=no" >> Makefile.config
+				;;
+			esac
+		fi
+	fi
+	if [ "${with_manpages}" = "no" ]; then
+		echo "NOMAN=yes" >> Makefile.config
+		echo "NOMANLINKS=yes" >> Makefile.config
+	else
+		if [ "${with_manlinks}" != "yes" ]; then
+			echo "NOMANLINKS=yes" >> Makefile.config
+		fi
+	fi
+fi
+if [ "${with_docs}" = "no" ]; then
+	echo "NODOC=yes" >> Makefile.config
+fi
+if [ "${enable_nls}" = "yes" ]; then
+ENABLE_NLS="yes"
+echo "#ifndef ENABLE_NLS" > config/enable_nls.h
+echo "#define ENABLE_NLS \"$ENABLE_NLS\"" >> config/enable_nls.h
+echo "#endif" >> config/enable_nls.h
+echo "hdefs[\"ENABLE_NLS\"] = \"$ENABLE_NLS\"" >>configure.lua
+msgfmt=""
+for path in `echo $PATH | sed 's/:/ /g'`; do
+	if [ -x "${path}/msgfmt" ]; then
+		msgfmt=${path}/msgfmt
+	fi
+done
+if [ "${msgfmt}" != "" ]; then
+	HAVE_GETTEXT="yes"
+else
+	HAVE_GETTEXT="no"
+fi
+echo "#ifndef ENABLE_NLS" > config/enable_nls.h
+echo "#define ENABLE_NLS \"$ENABLE_NLS\"" >> config/enable_nls.h
+echo "#endif" >> config/enable_nls.h
+echo "hdefs[\"ENABLE_NLS\"] = \"$ENABLE_NLS\"" >>configure.lua
+else
+ENABLE_NLS="no"
+HAVE_GETTEXT="no"
+echo "#undef ENABLE_NLS" >config/enable_nls.h
+echo "hdefs[\"ENABLE_NLS\"] = nil" >>configure.lua
+fi;
+CTAGS=""
+if [ "${with_ctags}" = "yes" ]; then
+	for path in `echo $PATH | sed 's/:/ /g'`; do
+		if [ -x "${path}/ectags" ]; then
+			CTAGS="${path}/ectags"
+		fi
+	done
+	if [ "${CTAGS}" = "" ]; then
+		for path in `echo $PATH | sed 's/:/ /g'`; do
+			if [ -x "${path}/ctags" ]; then
+				CTAGS="${path}/ctags"
+			fi
+		done
+	fi
+fi
+echo "CTAGS=${CTAGS}" >> Makefile.config
+if [ "${prefix_libtool}" != "" ]; then
+	LIBTOOL_BUNDLED="no"
+	LIBTOOL="${prefix_libtool}"
+else
+	LIBTOOL=""
+	for path in `echo $PATH | sed 's/:/ /g'`; do
+		if [ -x "${path}/glibtool" ]; then
+			LIBTOOL="${path}/glibtool"
+			break
+		fi
+		if [ -x "${path}/libtool" ]; then
+			LIBTOOL="${path}/libtool"
+			break
+		fi
+	done
+	if [ "${LIBTOOL}" = "" ]; then
+		LIBTOOL_BUNDLED="yes"
+		LIBTOOL=\${TOP}/mk/libtool/libtool
+	else
+		if [ "`libtool --version 2>/dev/null |grep GNU`" = "" ]; then
+			LIBTOOL_BUNDLED="yes"
+			LIBTOOL=\${TOP}/mk/libtool/libtool
+		else
+			LIBTOOL_BUNDLED="no"
+		fi
+	fi
+fi
+echo "LIBTOOL_BUNDLED=${LIBTOOL_BUNDLED}" >> Makefile.config
+echo "LIBTOOL=${LIBTOOL}" >> Makefile.config
+echo "PREFIX?=${PREFIX}" >> Makefile.config
+echo "#ifndef PREFIX" > config/prefix.h
+echo "#define PREFIX \"$PREFIX\"" >> config/prefix.h
+echo "#endif" >> config/prefix.h
+echo "hdefs[\"PREFIX\"] = \"$PREFIX\"" >>configure.lua
+if [ "${bindir}" != "" ]; then
+	BINDIR="${bindir}"
+	BINDIR_SPECIFIED="yes"
+else
+	BINDIR="${PREFIX}/bin"
+fi
+echo "#ifndef BINDIR" > config/bindir.h
+echo "#define BINDIR \"$BINDIR\"" >> config/bindir.h
+echo "#endif" >> config/bindir.h
+echo "hdefs[\"BINDIR\"] = \"$BINDIR\"" >>configure.lua
+if [ "${libdir}" != "" ]; then
+	LIBDIR="${libdir}"
+	LIBDIR_SPECIFIED="yes"
+else
+	LIBDIR="${PREFIX}/lib"
+fi
+echo "#ifndef LIBDIR" > config/libdir.h
+echo "#define LIBDIR \"$LIBDIR\"" >> config/libdir.h
+echo "#endif" >> config/libdir.h
+echo "hdefs[\"LIBDIR\"] = \"$LIBDIR\"" >>configure.lua
+if [ "${moduledir}" != "" ]; then
+	MODULEDIR="${moduledir}"
+	MODULEDIR_SPECIFIED="yes"
+else
+	MODULEDIR="${PREFIX}/lib"
+fi
+echo "#ifndef MODULEDIR" > config/moduledir.h
+echo "#define MODULEDIR \"$MODULEDIR\"" >> config/moduledir.h
+echo "#endif" >> config/moduledir.h
+echo "hdefs[\"MODULEDIR\"] = \"$MODULEDIR\"" >>configure.lua
+if [ "${libexecdir}" != "" ]; then
+	LIBEXECDIR="${libexecdir}"
+	LIBEXECDIR_SPECIFIED="yes"
+else
+	LIBEXECDIR="${PREFIX}/libexec"
+fi
+echo "#ifndef LIBEXECDIR" > config/libexecdir.h
+echo "#define LIBEXECDIR \"$LIBEXECDIR\"" >> config/libexecdir.h
+echo "#endif" >> config/libexecdir.h
+echo "hdefs[\"LIBEXECDIR\"] = \"$LIBEXECDIR\"" >>configure.lua
+if [ "${datadir}" != "" ]; then
+	DATADIR="${datadir}"
+	DATADIR_SPECIFIED="yes"
+else
+	DATADIR="${PREFIX}/share"
+fi
+echo "#ifndef DATADIR" > config/datadir.h
+echo "#define DATADIR \"$DATADIR\"" >> config/datadir.h
+echo "#endif" >> config/datadir.h
+echo "hdefs[\"DATADIR\"] = \"$DATADIR\"" >>configure.lua
+if [ "${statedir}" != "" ]; then
+	STATEDIR="${statedir}"
+	STATEDIR_SPECIFIED="yes"
+else
+	STATEDIR="${PREFIX}/var"
+fi
+echo "#ifndef STATEDIR" > config/statedir.h
+echo "#define STATEDIR \"$STATEDIR\"" >> config/statedir.h
+echo "#endif" >> config/statedir.h
+echo "hdefs[\"STATEDIR\"] = \"$STATEDIR\"" >>configure.lua
+if [ "${sysconfdir}" != "" ]; then
+	SYSCONFDIR="${sysconfdir}"
+	SYSCONFDIR_SPECIFIED="yes"
+else
+	SYSCONFDIR="${PREFIX}/etc"
+fi
+echo "#ifndef SYSCONFDIR" > config/sysconfdir.h
+echo "#define SYSCONFDIR \"$SYSCONFDIR\"" >> config/sysconfdir.h
+echo "#endif" >> config/sysconfdir.h
+echo "hdefs[\"SYSCONFDIR\"] = \"$SYSCONFDIR\"" >>configure.lua
+if [ "${localedir}" != "" ]; then
+	LOCALEDIR="${localedir}"
+	LOCALEDIR_SPECIFIED="yes"
+else
+	LOCALEDIR="${DATADIR}/locale"
+fi
+echo "#ifndef LOCALEDIR" > config/localedir.h
+echo "#define LOCALEDIR \"$LOCALEDIR\"" >> config/localedir.h
+echo "#endif" >> config/localedir.h
+echo "hdefs[\"LOCALEDIR\"] = \"$LOCALEDIR\"" >>configure.lua
+if [ "${mandir}" != "" ]; then
+	MANDIR="${mandir}"
+	MANDIR_SPECIFIED="yes"
+else
+	MANDIR="${PREFIX}/man"
+fi
+echo "#ifndef MANDIR" > config/mandir.h
+echo "#define MANDIR \"$MANDIR\"" >> config/mandir.h
+echo "#endif" >> config/mandir.h
+echo "hdefs[\"MANDIR\"] = \"$MANDIR\"" >>configure.lua
+PACKAGE="BSDBuild"
+echo "#ifndef PACKAGE" > config/package.h
+echo "#define PACKAGE \"$PACKAGE\"" >> config/package.h
+echo "#endif" >> config/package.h
+echo "hdefs[\"PACKAGE\"] = \"$PACKAGE\"" >>configure.lua
+VERSION="3.0"
+echo "#ifndef VERSION" > config/version.h
+echo "#define VERSION \"$VERSION\"" >> config/version.h
+echo "#endif" >> config/version.h
+echo "hdefs[\"VERSION\"] = \"$VERSION\"" >>configure.lua
+RELEASE="Blast of Ancient Atmospheres"
+echo "#ifndef RELEASE" > config/release.h
+echo "#define RELEASE \"$RELEASE\"" >> config/release.h
+echo "#endif" >> config/release.h
+echo "hdefs[\"RELEASE\"] = \"$RELEASE\"" >>configure.lua
+if [ "${DATADIR_SPECIFIED}" != "yes" ]; then
+DATADIR="$PREFIX/share/bsdbuild"
+echo "#ifndef DATADIR" > config/datadir.h
+echo "#define DATADIR \"$DATADIR\"" >> config/datadir.h
+echo "#endif" >> config/datadir.h
+echo "hdefs[\"DATADIR\"] = \"$DATADIR\"" >>configure.lua
+fi;
+CONFIGURE_OK="yes"
+echo "CONFIGURE_OK=$CONFIGURE_OK" >>Makefile.config
+echo "mdefs[\"CONFIGURE_OK\"] = \"$CONFIGURE_OK\"" >>configure.lua
+echo "PACKAGE=$PACKAGE" >>Makefile.config
+echo "mdefs[\"PACKAGE\"] = \"$PACKAGE\"" >>configure.lua
+echo "LOCALEDIR=$LOCALEDIR" >>Makefile.config
+echo "mdefs[\"LOCALEDIR\"] = \"$LOCALEDIR\"" >>configure.lua
+echo "LIBEXECDIR=$LIBEXECDIR" >>Makefile.config
+echo "mdefs[\"LIBEXECDIR\"] = \"$LIBEXECDIR\"" >>configure.lua
+echo "LIBDIR=$LIBDIR" >>Makefile.config
+echo "mdefs[\"LIBDIR\"] = \"$LIBDIR\"" >>configure.lua
+echo "RELEASE=$RELEASE" >>Makefile.config
+echo "mdefs[\"RELEASE\"] = \"$RELEASE\"" >>configure.lua
+echo "HAVE_GETTEXT=$HAVE_GETTEXT" >>Makefile.config
+echo "mdefs[\"HAVE_GETTEXT\"] = \"$HAVE_GETTEXT\"" >>configure.lua
+echo "ENABLE_NLS=$ENABLE_NLS" >>Makefile.config
+echo "mdefs[\"ENABLE_NLS\"] = \"$ENABLE_NLS\"" >>configure.lua
+echo "MANDIR=$MANDIR" >>Makefile.config
+echo "mdefs[\"MANDIR\"] = \"$MANDIR\"" >>configure.lua
+echo "MODULEDIR=$MODULEDIR" >>Makefile.config
+echo "mdefs[\"MODULEDIR\"] = \"$MODULEDIR\"" >>configure.lua
+echo "DATADIR=$DATADIR" >>Makefile.config
+echo "mdefs[\"DATADIR\"] = \"$DATADIR\"" >>configure.lua
+echo "SYSCONFDIR=$SYSCONFDIR" >>Makefile.config
+echo "mdefs[\"SYSCONFDIR\"] = \"$SYSCONFDIR\"" >>configure.lua
+echo "STATEDIR=$STATEDIR" >>Makefile.config
+echo "mdefs[\"STATEDIR\"] = \"$STATEDIR\"" >>configure.lua
+echo "BINDIR=$BINDIR" >>Makefile.config
+echo "mdefs[\"BINDIR\"] = \"$BINDIR\"" >>configure.lua
+echo "VERSION=$VERSION" >>Makefile.config
+echo "mdefs[\"VERSION\"] = \"$VERSION\"" >>configure.lua
+if [ "${srcdir}" != "" ]; then
+	$ECHO_N "* Source is in ${srcdir}. Generating Makefiles..."
+	${PERL} ${SRC}/mk/mkconcurrent.pl ${SRC}
+	if [ $? != 0 ]; then
+		exit 1;
+	fi
+	echo "done"
+fi
+echo "*"
+echo "* Configuration successful. Use \"make depend all\" to compile,"
+echo "* and \"make install\" to install this software under $PREFIX."
+echo "*"

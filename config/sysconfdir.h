@@ -1,3 +1,3 @@
 #ifndef SYSCONFDIR
-#define SYSCONFDIR "/usr/etc"
+#define SYSCONFDIR "/usr/local/etc"
 #endif
