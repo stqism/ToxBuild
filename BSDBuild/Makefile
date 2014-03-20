@@ -117,7 +117,8 @@ DATAFILES=Core.pm \
 	sodium.pm \
 	toxav.pm \
 	openal.pm \
-	ncurses.pm
+	ncurses.pm \
+	ncursesnp.pm
 
 
 all:
