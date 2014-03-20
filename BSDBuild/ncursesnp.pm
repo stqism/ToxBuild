@@ -74,6 +74,8 @@ sub Test
 		MkPrintN('checking whether ncurses works...');
 		MkCompileC('HAVE_NCURSES', '${NCURSES_CFLAGS}', '${NCURSES_LIBS}', $testCode);
 		MkSaveIfTrue('${HAVE_NCURSES}', 'NCURSES_CFLAGS', 'NCURSES_LIBS');
+		MkCompileC('HAVE_NCURSESNP', '${NCURSES_CFLAGS}', '${NCURSES_LIBS}', $testCode);
+		MkSaveIfTrue('${HAVE_NCURSESNP}', 'NCURSES_CFLAGS', 'NCURSES_LIBS');
 	MkElse;
 		MkPrint('no');
 		MkSaveUndef('HAVE_NCURSES', 'NCURSES_CFLAGS', 'NCURSES_LIBS');
