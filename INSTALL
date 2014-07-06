@@ -1,8 +1,8 @@
 
-BSDBuild Installation
+ToxBuild Installation
 ---------------------
 
-To install BSDBuild onto your system, use the following:
+To install ToxBuild onto your system, use the following:
 
 	$ ./configure
 	$ make

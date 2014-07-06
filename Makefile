@@ -1,9 +1,9 @@
 TOP=.
 include ${TOP}/Makefile.config
 
-PROJECT=bsdbuild
+PROJECT=toxbuild
 
-SUBDIR=	BSDBuild \
+SUBDIR=	ToxBuild \
 	ManReader \
 	man
 

@@ -1,5 +1,5 @@
 
-Release Notes for BSDBuild 3.0
+Release Notes for ToxBuild 3.0
 ------------------------------
 - It is now possible to control conditional compilation from configure
   (i.e., a Makefile's ${SRCS} definition may safely reference configure-

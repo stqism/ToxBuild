@@ -1,7 +1,7 @@
 # Public domain
 
-PACKAGE("BSDBuild")
+PACKAGE("ToxBuild")
 VERSION("3.0")
-RELEASE("Blast of Ancient Atmospheres")
-DEFAULT_DIR(DATADIR, "$PREFIX/share/bsdbuild")
+RELEASE("Legit Release")
+DEFAULT_DIR(DATADIR, "$PREFIX/share/toxbuild")
 MDEFINE(CONFIGURE_OK, "yes")
