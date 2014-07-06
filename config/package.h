@@ -1,3 +1,3 @@
 #ifndef PACKAGE
-#define PACKAGE "BSDBuild"
+#define PACKAGE "ToxBuild"
 #endif

@@ -25,11 +25,11 @@
 .Dd July 18, 2007
 .Dt BUILD.LIB.MK 5
 .Os
-.ds vT BSDBuild Reference
-.ds oS BSDBuild 1.0
+.ds vT ToxBuild Reference
+.ds oS ToxBuild 1.0
 .Sh NAME
 .Nm build.lib.mk
-.Nd bsdbuild - compilation of libraries
+.Nd Toxbuild - compilation of libraries
 .Sh SYNOPSIS
 .Fd .include <bsd.lib.mk>
 .Sh DESCRIPTION
@@ -59,7 +59,7 @@ Yacc (*.y)
 Compile the source files into a static library.
 .It Ar lib${LIB}.la
 Compile the source files into static and shared libraries using libtool
-(libtool comes bundled with BSDBuild).
+(libtool comes bundled with ToxBuild).
 .It Ar clean-lib
 Clean up object and library files.
 .It Ar cleandir-lib
@@ -232,6 +232,6 @@ Default is "No".
 .Xr build.prog.mk 5
 .Sh HISTORY
 .Nm
-first appeared in BSDBuild 1.0.
+first appeared in ToxBuild 1.0.
 .Pp
-BSDBuild is based on the 4.4BSD build system.
+ToxBuild is based on the 4.4Tox build system.

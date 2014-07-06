@@ -124,23 +124,23 @@ DATAFILES=Core.pm \
 all:
 
 install:
-	@if [ ! -d "${DESTDIR}${DATADIR}/BSDBuild" ]; then \
-	    echo "${INSTALL_DATA_DIR} ${DATADIR}/BSDBuild"; \
-	    ${SUDO} ${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}/BSDBuild; \
+	@if [ ! -d "${DESTDIR}${DATADIR}/ToxBuild" ]; then \
+	    echo "${INSTALL_DATA_DIR} ${DATADIR}/ToxBuild"; \
+	    ${SUDO} ${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}/ToxBuild; \
 	fi; \
 	for F in ${DATAFILES}; do \
-	    echo "${INSTALL_DATA} $$F ${DATADIR}/BSDBuild"; \
-	    ${SUDO} ${INSTALL_DATA} $$F ${DESTDIR}${DATADIR}/BSDBuild; \
+	    echo "${INSTALL_DATA} $$F ${DATADIR}/ToxBuild"; \
+	    ${SUDO} ${INSTALL_DATA} $$F ${DESTDIR}${DATADIR}/ToxBuild; \
 	done
 
 install-links:
-	@if [ ! -d "${DESTDIR}${DATADIR}/BSDBuild" ]; then \
-	    echo "${INSTALL_DATA_DIR} ${DATADIR}/BSDBuild"; \
-	    ${SUDO} ${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}/BSDBuild; \
+	@if [ ! -d "${DESTDIR}${DATADIR}/ToxBuild" ]; then \
+	    echo "${INSTALL_DATA_DIR} ${DATADIR}/ToxBuild"; \
+	    ${SUDO} ${INSTALL_DATA_DIR} ${DESTDIR}${DATADIR}/ToxBuild; \
 	fi; \
 	for F in ${DATAFILES}; do \
-	    echo "ln -sf `pwd`/$$F ${DATADIR}/BSDBuild/$$F"; \
-	    ${SUDO} ln -sf `pwd`/$$F ${DESTDIR}${DATADIR}/BSDBuild/$$F; \
+	    echo "ln -sf `pwd`/$$F ${DATADIR}/ToxBuild/$$F"; \
+	    ${SUDO} ln -sf `pwd`/$$F ${DESTDIR}${DATADIR}/ToxBuild/$$F; \
 	done
 
 clean:

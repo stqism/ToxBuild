@@ -26,11 +26,11 @@
 .Dd JULY 19, 2007
 .Dt MKCONFIGURE 1
 .Os
-.ds vT BSDBuild Reference
-.ds oS BSDBuild 2.8
+.ds vT ToxBuild Reference
+.ds oS ToxBuild 2.8
 .Sh NAME
 .Nm mkconfigure
-.Nd Compile BSDBuild configure scripts
+.Nd Compile ToxBuild configure scripts
 .Sh SYNOPSIS
 .Nm mkconfigure
 .Sh DESCRIPTION
@@ -60,7 +60,7 @@ Specify software version.
 .It Ev RELEASE(string)
 Specify release name.
 .It Ev CHECK(package[,version[,prefix]])
-Invoke one of the standard BSDBuild tests (see the BSDBuild website for a list).
+Invoke one of the standard ToxBuild tests (see the ToxBuild website for a list).
 Most tests will set the
 .Dv HAVE_FOO
 (where
@@ -98,7 +98,7 @@ Same as the
 directive, except that the configure script will fail if the package is
 either not found, or if the version is too old.
 .It Ev TEST_DIR(path)
-Specify an extra directory in which to search for BSDBuild test modules
+Specify an extra directory in which to search for ToxBuild test modules
 (.pm files).
 .It Ev REGISTER(name,descr)
 Describe a configure script argument (for --help).
@@ -197,7 +197,7 @@ Provide a gcc-style compiler option, such as
 .Ar -Werror
 or
 .Ar -Wmissing-prototypes .
-For environments using other compilers, BSDBuild will attempt to set
+For environments using other compilers, ToxBuild will attempt to set
 equivalent options.
 .It Ev LD_OPTION
 Provide a ld-style linker option, such as
@@ -270,4 +270,4 @@ DATADIR, STATEDIR, SYSCONFDIR, LOCALEDIR or MANDIR.
 .Xr build.lib.mk 5 ,
 .Xr build.common.mk 5
 .Pp
-http://hypertriton.com/bsdbuild/
+http://hypertriton.com/Toxbuild/

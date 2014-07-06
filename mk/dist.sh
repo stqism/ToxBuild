@@ -1,10 +1,10 @@
 #!/bin/sh
 # Public domain
 #
-# Release script for BSDBuild.
+# Release script for ToxBuild.
 #
 
-PROJ=bsdbuild
+PROJ=Toxbuild
 VER=${VERSION}
 REL=${RELEASE}
 DISTNAME=${PROJ}-${VER}
@@ -95,8 +95,7 @@ fi
 if [ "$PHASE" = "stable" ]; then
 	echo "*********************************************************"
 	echo "TODO:"
-	echo "- Update http://sourceforge.net/projects/bsdbuild/"
-	echo "- Update http://freshmeat.net/projects/bsdbuild/"
-	echo "- Notify bsdbuild@hypertriton.com"
+	echo "- Update https://github.com/Tox/ToxBuild/"
+	echo "- Notify sean@tox.im"
 	echo "*********************************************************"
 fi

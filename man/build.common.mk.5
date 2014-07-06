@@ -25,16 +25,16 @@
 .Dd July 18, 2007
 .Dt BUILD.COMMON.MK 5
 .Os
-.ds vT BSDBuild Reference
-.ds oS BSDBuild 1.0
+.ds vT ToxBuild Reference
+.ds oS ToxBuild 1.0
 .Sh NAME
 .Nm build.common.mk
-.Nd bsdbuild - common defines
+.Nd Toxbuild - common defines
 .Sh SYNOPSIS
-.Fd .include <bsd.common.mk>
+.Fd .include <Tox.common.mk>
 .Sh DESCRIPTION
 .Nm
-defines common variables that are used by the different BSDBuild modules.
+defines common variables that are used by the different ToxBuild modules.
 They can be referenced from Makefiles, but they are almost always treated
 read-only and overrided by a
 .Pa Makefile.config
@@ -101,12 +101,12 @@ Defaults to
 Path to the
 .Sq find 1
 command.
-Not used by BSDBuild itself, but useful for maintainer scripts and such.
+Not used by ToxBuild itself, but useful for maintainer scripts and such.
 .It Ev AWK
 Path to
 .Sq awk
 interpreter.
-Not used by BSDBuild itself, but useful for maintainer scripts and such.
+Not used by ToxBuild itself, but useful for maintainer scripts and such.
 .It Ev INSTALL_PROG
 Command to execute for installing an executable file.
 Defaults to
@@ -137,6 +137,6 @@ Command to execute for uninstalling a library header file.
 .Xr build.lib.mk 5
 .Sh HISTORY
 .Nm
-first appeared in BSDBuild 1.0.
+first appeared in ToxBuild 1.0.
 .Pp
-BSDBuild is based on the 4.4BSD build system.
+ToxBuild is based on the 4.4Tox build system.

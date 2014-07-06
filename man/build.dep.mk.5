@@ -25,11 +25,11 @@
 .Dd July 18, 2007
 .Dt BUILD.DEP.MK 5
 .Os
-.ds vT BSDBuild Reference
-.ds oS BSDBuild 1.0
+.ds vT ToxBuild Reference
+.ds oS ToxBuild 1.0
 .Sh NAME
 .Nm build.dep.mk
-.Nd bsdbuild - dependency generation
+.Nd Toxbuild - dependency generation
 .Sh SYNOPSIS
 .Fd .include <bsd.dep.mk>
 .Sh DESCRIPTION
@@ -65,7 +65,7 @@ Path to
 utility.
 Defaults to
 .Sq ${TOP}/mk/mkdep ,
-which is bundled with BSDBuild.
+which is bundled with ToxBuild.
 .It Ev CC
 Compiler command to invoke (must support the
 .Ar -M
@@ -77,6 +77,6 @@ option).
 .Xr build.lib.mk 5
 .Sh HISTORY
 .Nm
-first appeared in BSDBuild 1.0.
+first appeared in ToxBuild 1.0.
 .Pp
-BSDBuild is based on the 4.4BSD build system.
+ToxBuild is based on the 4.4Tox build system.

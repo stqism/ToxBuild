@@ -26,11 +26,11 @@
 .Dd JULY 19, 2007
 .Dt MKIFY 1
 .Os
-.ds vT BSDBuild Reference
-.ds oS BSDBuild 1.0
+.ds vT ToxBuild Reference
+.ds oS ToxBuild 1.0
 .Sh NAME
 .Nm mkify
-.Nd BSDBuild auto-bundling script
+.Nd ToxBuild auto-bundling script
 .Sh SYNOPSIS
 .Nm mkify
 .Ar module
@@ -38,11 +38,11 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility copies installed BSDBuild include files from their system location
+utility copies installed ToxBuild include files from their system location
 to
 .Pa mk
 under the working directory.
-It accepts a list of BSDBuild modules as arguments (e.g.,
+It accepts a list of ToxBuild modules as arguments (e.g.,
 .Sq prog
 will cause
 .Xr build.prog.mk 5
@@ -51,14 +51,14 @@ to be installed).
 also scans for include directives and will automatically install all
 dependencies as well.
 .Pp
-The BSDBuild build system is designed to be bundled with applications as
+The ToxBuild build system is designed to be bundled with applications as
 a stand-alone set of
 .Xr make 1
 include files, which are typically installed in a directory named
 .Pa mk
 in the top-level directory (or some other central location) in an
 application source code, such that people building applications which
-use the BSDBuild build system do not need to have BSDBuild or any
+use the ToxBuild build system do not need to have ToxBuild or any
 other software installed on their systems.
 .Pp
 While the need for a
@@ -67,10 +67,10 @@ directory may be perceived as a problem, there are several advantages:
 .Bl -enum
 .It
 Makefiles are not generated, they can be edited directly.
-BSDBuild will generate Makefiles only when performing concurrent builds
+ToxBuild will generate Makefiles only when performing concurrent builds
 (i.e., building object files in a directory separate from the source tree).
 .It
-BSDBuild makefiles are orders of magnitude smaller than any generated
+ToxBuild makefiles are orders of magnitude smaller than any generated
 Makefile, avoiding masses of redundant code.
 .It
 There is no
@@ -83,4 +83,4 @@ so the total number of files in your tree is reduced.
 .Xr build.common.mk 5 ,
 .Xr mkconfigure 1
 .Pp
-http://hypertriton.com/bsdbuild/
+http://hypertriton.com/Toxbuild/
