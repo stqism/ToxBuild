@@ -1,4 +1,4 @@
-#!/usr/bin/perl -I%PREFIX%/share/bsdbuild
+#!/usr/bin/perl -I%PREFIX%/share/Toxbuild
 #
 # Copyright (c) 2008-2009 Hypertriton, Inc. <http://hypertriton.com/>
 # All rights reserved.
@@ -58,7 +58,7 @@ my %V = ();
 sub Version
 {
     print << "EOF";
-echo "BSDbuild %VERSION%"
+echo "ToxBuild %VERSION%"
 exit 1
 EOF
 }
@@ -241,11 +241,11 @@ if (!ParseMakefile('-')) {
 print << 'EOF';
 --
 -- Do not edit!
--- This file was generated from Makefile by BSDbuild %VERSION%.
+-- This file was generated from Makefile by ToxBuild %VERSION%.
 --
--- To regenerate this file, get the latest BSDbuild release from
--- http://hypertriton.com/bsdbuild/, the latest Premake release
--- (v3 series) from http://premake.sourceforge.net/, and execute:
+-- To regenerate this file, get the latest ToxBuild release from
+-- https://github.com/Tox/ToxBuild
+-- and execute:
 --
 --     $ make proj
 --
@@ -282,12 +282,12 @@ if (exists($langs{'c'})) {
 }
 
 # Scan BSDBuild modules for LINK operations.
-$INSTALLDIR = '%PREFIX%/share/bsdbuild';
+$INSTALLDIR = '%PREFIX%/share/toxbuild';
 $EmulEnv = $ENV{'PROJTARGET'};
 $EmulOS = $ENV{'PROJOS'};
-if (opendir(DIR, $INSTALLDIR.'/BSDBuild')) {
+if (opendir(DIR, $INSTALLDIR.'/Toxbuild')) {
 	foreach my $file (readdir(DIR)) {
-		my $path = $INSTALLDIR.'/BSDBuild/'.$file;
+		my $path = $INSTALLDIR.'/Toxbuild/'.$file;
 		if ($file =~ /^\./ || $file =~ /^[A-Z]/ || !-f $path) { next; }
 		if ($file !~ /^([\w\-\.]+)\.pm$/) { next; }
 		my $modname = $1;
