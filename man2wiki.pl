@@ -1,4 +1,4 @@
-#!/usr/bin/perl -I%PREFIX%/share/bsdbuild
+#!/usr/bin/perl -I%PREFIX%/share/Toxbuild
 #
 # Copyright (c) 2009 Hypertriton, Inc. <http://hypertriton.com>
 # All rights reserved.
@@ -38,6 +38,6 @@ while (<STDIN>) {
 	push @lines, $out if $out;
 }
 print '<!-- Begin man2wiki.pl generated section -->'."\n";
-print '<!-- BSDBuild %VERSION% (http://bsdbuild.hypertriton.com/) -->'."\n";
+print '<!-- ToxBuild %VERSION% (https://github.com/Tox/ToxBuild/) -->'."\n";
 ManReader::Mdoc::ParseToWikitext('Manual/', @lines);
 print "\n".'<!-- Close man2wiki.pl generated section -->'."\n";
