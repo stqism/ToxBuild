@@ -23,8 +23,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
 # USE OF THIS SOFTWARE EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-use BSDBuild::Core;
-use BSDBuild::Builtins;
+use ToxBuild::Core;
+use ToxBuild::Builtins;
 use Getopt::Long;
 
 my $Verbose = 0;
